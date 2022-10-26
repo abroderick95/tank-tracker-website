@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./styling/App.css";
+import ResponsiveAppBar from "./components/NavBar";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
+import { LandingPage } from "./components/LandingPage";
+import { TankStats } from "./components/TankStats";
+import { CreateNew } from "./components/CreateNew";
+import { AboutPage } from "./components/AboutPage";
+import { PageRoute } from "./constants/pageRoute";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <ResponsiveAppBar />
+        <Routes>
+          <Route path={PageRoute.LandingPage} element={<LandingPage />} />
+          <Route path={PageRoute.TankStats} element={<TankStats />} />
+          <Route path={PageRoute.CreateNew} element={<CreateNew />} />
+          <Route path={PageRoute.AboutUs} element={<AboutPage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
