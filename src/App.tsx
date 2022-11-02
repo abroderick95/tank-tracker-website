@@ -1,10 +1,10 @@
 import "./styling/App.css";
 import ResponsiveAppBar from "./components/NavBar";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
-import { LandingPage } from "./components/LandingPage";
-import { TankStats } from "./components/TankStats";
-import { CreateNew } from "./components/CreateNew";
-import { AboutPage } from "./components/AboutPage";
+import { LandingPage } from "./PageRoutes/LandingPage";
+import { WaterTesting } from "./PageRoutes/TankStats";
+import { CreateNew } from "./PageRoutes/CreateTankPage";
+import { AboutPage } from "./PageRoutes/AboutPage";
 import { PageRoute } from "./constants/pageRoute";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
         <ResponsiveAppBar />
         <Routes>
           <Route path={PageRoute.LandingPage} element={<LandingPage />} />
-          <Route path={PageRoute.TankStats} element={<TankStats />} />
+          <Route path={PageRoute.TankStats} element={<WaterTesting />} />
           <Route path={PageRoute.CreateNew} element={<CreateNew />} />
           <Route path={PageRoute.AboutUs} element={<AboutPage />} />
         </Routes>
