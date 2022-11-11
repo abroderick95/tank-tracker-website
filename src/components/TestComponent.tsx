@@ -1,12 +1,11 @@
-import React from 'react';
+import { Grid } from "@mui/material";
+import * as React from "react";
 
 export interface TestComponentProps {
-    text: string,
-    height: number
+  text: string;
+  height: number;
 }
 
 export const TestComponent = ({ text, height }: TestComponentProps) => {
-
-    return <div style={{ height }}>{text}</div>
-
-}
+  return <Grid style={{ height }}>{text}</Grid>;
+};

@@ -1,16 +1,8 @@
 import * as React from "react";
-import {
-  Grid,
-  TextField,
-  Button,
-  Stepper,
-  Step,
-  StepLabel,
-} from "@mui/material";
+import { Grid } from "@mui/material";
 import { useState } from "react";
 import { newTankSlides } from "./newTankSlides";
 import { Question } from "./Question";
-import { QuickButton } from "../QuickFormButton";
 
 export function NewTankForm() {
   const [currentSlide, setSlide] = useState(0);

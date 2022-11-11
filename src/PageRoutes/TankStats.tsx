@@ -1,67 +1,76 @@
-import "../styling/TankForms.css";
 import * as React from "react";
-import Footer from "../components/Footer";
-import { Grid } from "@mui/material";
-import { QuickColumn, QuickColumnItem } from "../components/QuickColumns";
+import { Box, Typography } from "@mui/material";
+import { siteThemes } from "../styling/SiteThemes";
+import Paper from "@mui/material/Paper";
+import { border, flexbox } from "@mui/system";
+import { positions } from "@mui/system";
+import { Footer } from "../components/Footer";
 
-export const WaterTesting = () => {
-  const ammoniaItems: QuickColumnItem[] = [
-    { value: 0, color: "#F6E256" },
-    { value: 0.25, color: "#E7E94D" },
-    { value: 0.5, color: "#C5DA56" },
-    { value: 1, color: "#A7CC56" },
-    { value: 2, color: "#77BC3C" },
-    { value: 4, color: "#4AA34E" },
-    { value: 8, color: "#33763B" },
-  ];
-  const nitriteItems: QuickColumnItem[] = [
-    { value: 0, color: "#A7D6CF" },
-    { value: 0.25, color: "#98A7D1" },
-    { value: 0.5, color: "#9487B4" },
-    { value: 1, color: "#85679D" },
-    { value: 2, color: "#924F94" },
-    { value: 5, color: "#8D488E" },
-  ];
-  const nitrateItems: QuickColumnItem[] = [
-    { value: 0, color: "#F9EB4E" },
-    { value: 5, color: "#EDB43E" },
-    { value: 10, color: "#E69035" },
-    { value: 20, color: "#E58D3C" },
-    { value: 40, color: "#D5473A" },
-    { value: 80, color: "#D1372F" },
-    { value: 160, color: "#AE2A35" },
-  ];
-  return (
-    <>
-      <h1>Your Tank Stats!</h1>
-      <Grid container className="waterTestingContainer">
-        <Grid item>
-          <QuickColumn
-            title="Ammonia"
-            units="ppm"
-            items={ammoniaItems}
-          ></QuickColumn>
-        </Grid>
-        <Grid item>
-          <QuickColumn
-            title="Nitrite"
-            units="ppm"
-            items={nitriteItems}
-          ></QuickColumn>
-        </Grid>
-        <Grid item>
-          <QuickColumn
-            title="Nitrate"
-            units="ppm"
-            items={nitrateItems}
-          ></QuickColumn>
-        </Grid>
-      </Grid>
-      <Footer></Footer>
-    </>
-  );
-};
+// import {
+//   Chart,
+//   ArgumentAxis,
+//   ValueAxis,
+//   LineSeries,
+//   Title,
+//   Legend,
+// } from "@devexpress/dx-react-chart-material-ui";
+// import { Animation } from "@devexpress/dx-react-chart";
 
 export const TankStats = () => {
-  return <></>;
+  // const data = [
+  //   {
+  //     date: new Date("2022-11-06").getTime(),
+  //     ammonia: 0.25,
+  //     nitrite: 0.25,
+  //     nitrate: 5,
+  //   },
+  //   {
+  //     date: new Date("2022-11-30").getTime(),
+  //     ammonia: 0,
+  //     nitrite: 0,
+  //     nitrate: 0,
+  //   },
+  // ];
+
+  // const startTime = new Date("2022-11-01");
+  // const endTime = new Date("2022-11-30");
+  // const msInMonth = endTime.getTime() - startTime.getTime();
+  // const boxHeight = 86400000 / msInMonth;
+  // const CONTAINER_HEIGHT = 500;
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column",
+      }}
+    >
+      <Typography variant="h3">Your Tank Stats!</Typography>
+      <Paper
+        sx={{ width: 450, height: 450 }}
+        elevation={5}
+        // sx={{ border: 1 }}
+        // flexDirection={"column"}
+        // flexGrow={"1"}
+      ></Paper>
+      <Footer></Footer>
+      {/* <Paper style={{ height: CONTAINER_HEIGHT }}>
+        {data.map((data) => {
+          const percent = (data.date - startTime.getTime()) / msInMonth;
+          return (
+            <Box
+              bgcolor="yellow"
+              height={boxHeight}
+              width={50}
+              sx={{
+                transform: `translate(0px, ${Math.round(
+                  percent * CONTAINER_HEIGHT
+                )}px)`,
+              }}
+            />
+          );
+        })}
+      </Paper> */}
+    </Box>
+  );
 };

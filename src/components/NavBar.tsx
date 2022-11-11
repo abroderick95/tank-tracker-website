@@ -19,13 +19,14 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const pages = [
   { text: "Home", path: PageRoute.LandingPage },
+  { text: "Test My Water", path: PageRoute.TestMyWater },
   { text: "My Tank Stats", path: PageRoute.TankStats },
   { text: "Create New Tank", path: PageRoute.CreateNew },
   { text: "About Page", path: PageRoute.AboutUs },
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function ResponsiveAppBar() {
+export function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
@@ -140,4 +141,3 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;

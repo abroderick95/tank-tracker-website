@@ -1,17 +1,13 @@
-/* .Questionnaire-Options {
-
-} */
+.waterTestingContainer{
+    justify-content: center;
+}
 
 .Q-Btn {
-    /* max-Width: 30px; 
-    max-Height: 30px;  */
     min-Width: 30px; 
     min-Height: 30px
 }
 
 .Need-Help-Btn {
-    /* max-Width: 10px; 
-    max-Height: 10px;  */
     min-Width: 10px; 
     min-Height: 10px
 }
