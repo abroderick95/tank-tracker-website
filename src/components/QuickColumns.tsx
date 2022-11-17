@@ -1,11 +1,13 @@
 import * as React from "react";
 import { Grid, Box, Button, useTheme } from "@mui/material";
-import { BorderColor } from "@mui/icons-material";
-import { text } from "node:stream/consumers";
-import { textTransform } from "@mui/system";
+import { bgcolor } from "@mui/system";
 
 // function buttonHover() {
 //   BorderColor: "text.primary";
+// }
+
+// function handleClick(item) {
+//   console.log("Click detected on" + item.value);
 // }
 
 export interface QuickColumnItem {
@@ -27,6 +29,7 @@ export function QuickColumn({ items, title }: QuickColumnProps) {
         return (
           <Box
             component={Button}
+            // onClick={handleClick}
             boxShadow={3}
             bgcolor={item.color}
             height="70px"
@@ -34,12 +37,11 @@ export function QuickColumn({ items, title }: QuickColumnProps) {
             marginBottom="3px"
             color={styles.palette.secondary.contrastText}
             sx={{
-              border: 2,
+              border: 4,
               borderColor: item.color,
               textTransform: "lowercase",
               "&:hover": {
                 backgroundColor: item.color,
-
                 borderColor: styles.palette.secondary.light,
               },
             }}

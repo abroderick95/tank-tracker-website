@@ -22,19 +22,21 @@ export const siteThemes = createTheme({
       // All major text
     },
   },
+
   components: {
-    MuiPaper: {},
-    MuiTouchRipple: {
+    MuiGrid: {
       styleOverrides: {
-        root: {},
+        root: { padding: 0 },
       },
     },
-    MuiButtonBase: {
+    MuiTypography: {
       styleOverrides: {
-        root: {
-          // color: "#FF731D !important",
-          // Overrides button text & navbar text color
-        },
+        // root: { color: "#FF731D !important" },s
+      },
+    },
+    MuiCardActionArea: {
+      styleOverrides: {
+        // root: { margin: 50 },
       },
     },
   },

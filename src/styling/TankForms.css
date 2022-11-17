@@ -1,3 +1,7 @@
+.Q-Header {
+    color: #FF731D !important
+}
+
 .waterTestingContainer{
     justify-content: center;
 }
@@ -10,4 +14,8 @@
 .Need-Help-Btn {
     min-Width: 10px; 
     min-Height: 10px
+}
+
+.newTankCard {
+    border-radius: 10px;
 }

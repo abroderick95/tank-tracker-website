@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Grid } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useState } from "react";
 import { newTankSlides } from "./newTankSlides";
 import { Question } from "./Question";
@@ -17,17 +17,14 @@ export function NewTankForm() {
 
   return (
     <>
-      <h1>Create Your New Tank!</h1>
-      <form>
-        {newTankSlides.map((slide, index) =>
-          index === currentSlide ? (
-            <Question {...slide} onNext={nextSlide} />
-          ) : (
-            <></>
-          )
-        )}
-        <Grid container direction="column" justifyContent="center"></Grid>
-      </form>
+      <Typography variant="h3">Create Your New Tank!</Typography>
+      {newTankSlides.map((slide, index) =>
+        index === currentSlide ? (
+          <Question {...slide} onNext={nextSlide} />
+        ) : (
+          <></>
+        )
+      )}
     </>
   );
 }
