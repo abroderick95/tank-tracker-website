@@ -3,8 +3,14 @@ import "../styling/TankForms.css";
 import * as React from "react";
 import { Footer } from "../components/Footer";
 import { Grid, Typography } from "@mui/material";
-import { QuickColumn, QuickColumnItem } from "../components/QuickColumns";
+import {
+  QuickColumn,
+  QuickColumnItem,
+  QuickColumnProps,
+} from "../components/QuickColumn";
 import { TankTestingTimer } from "../components/TankTestingTimer";
+import { useState } from "react";
+import { WaterTestingColumn } from "../constants/WaterTestingColumn";
 
 export const TestMyWater = () => {
   const ammoniaItems: QuickColumnItem[] = [
@@ -33,6 +39,20 @@ export const TestMyWater = () => {
     { value: 80, color: "#D1372F" },
     { value: 160, color: "#AE2A35" },
   ];
+
+  const [selectedButtons, setSelectedButtons] = useState({
+    [WaterTestingColumn.Ammonia]: undefined,
+    [WaterTestingColumn.Nitrite]: undefined,
+    [WaterTestingColumn.Nitrate]: undefined,
+  });
+
+  function handleClick(item: QuickColumnItem, title: WaterTestingColumn) {
+    setSelectedButtons(() => ({
+      ...selectedButtons,
+      [title]: item.value === selectedButtons[title] ? undefined : item.value,
+    }));
+  }
+
   return (
     <>
       <Typography variant="h3">Test Your Water!</Typography>
@@ -41,25 +61,31 @@ export const TestMyWater = () => {
         <Grid item>
           Ammonia
           <QuickColumn
-            title="Ammonia"
+            title={WaterTestingColumn.Ammonia}
             units="ppm"
             items={ammoniaItems}
+            onItemClick={handleClick}
+            selectedItem={selectedButtons.Ammonia}
           ></QuickColumn>
         </Grid>
         <Grid item>
           Nitrite
           <QuickColumn
-            title="Nitrite"
+            title={WaterTestingColumn.Nitrite}
             units="ppm"
             items={nitriteItems}
+            onItemClick={handleClick}
+            selectedItem={selectedButtons.Nitrite}
           ></QuickColumn>
         </Grid>
         <Grid item>
           Nitrate
           <QuickColumn
-            title="Nitrate"
+            title={WaterTestingColumn.Nitrate}
             units="ppm"
             items={nitrateItems}
+            onItemClick={handleClick}
+            selectedItem={selectedButtons.Nitrate}
           ></QuickColumn>
         </Grid>
       </Grid>

@@ -1,14 +1,8 @@
 import * as React from "react";
 import { Grid, Box, Button, useTheme } from "@mui/material";
 import { bgcolor } from "@mui/system";
-
-// function buttonHover() {
-//   BorderColor: "text.primary";
-// }
-
-// function handleClick(item) {
-//   console.log("Click detected on" + item.value);
-// }
+import { useState } from "react";
+import { WaterTestingColumn } from "../constants/WaterTestingColumn";
 
 export interface QuickColumnItem {
   value: number;
@@ -16,20 +10,30 @@ export interface QuickColumnItem {
 }
 
 export interface QuickColumnProps {
-  title: string;
+  title: WaterTestingColumn;
   units: string;
   items: QuickColumnItem[];
+  selectedItem: number | undefined;
+  onItemClick: (item: QuickColumnItem, title: WaterTestingColumn) => void;
 }
 
-export function QuickColumn({ items, title }: QuickColumnProps) {
+export function QuickColumn({
+  items,
+  title,
+  units,
+  selectedItem,
+  onItemClick,
+}: QuickColumnProps) {
   const styles = useTheme();
+
   return (
     <Grid container direction={"column"}>
       {items.map((item) => {
         return (
           <Box
+            key={item.color}
             component={Button}
-            // onClick={handleClick}
+            onClick={() => onItemClick(item, title)}
             boxShadow={3}
             bgcolor={item.color}
             height="70px"
@@ -38,7 +42,10 @@ export function QuickColumn({ items, title }: QuickColumnProps) {
             color={styles.palette.secondary.contrastText}
             sx={{
               border: 4,
-              borderColor: item.color,
+              borderColor:
+                item.value === selectedItem
+                  ? styles.palette.secondary.light
+                  : item.color,
               textTransform: "lowercase",
               "&:hover": {
                 backgroundColor: item.color,
@@ -46,7 +53,7 @@ export function QuickColumn({ items, title }: QuickColumnProps) {
               },
             }}
           >
-            {item.value}ppm
+            {item.value + units}
           </Box>
         );
       })}
