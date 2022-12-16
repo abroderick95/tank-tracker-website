@@ -24,9 +24,6 @@ export function TankTestingTimer(
 
   return (
     <>
-      <Grid style={{ textAlign: "center", padding: "5px 10px 30px" }}>
-        <WCDateWheel />
-      </Grid>
       <Box sx={{ mx: "auto", width: 600, height: 20 }}>
         <LinearProgress variant="determinate" value={timerProgress} />
       </Box>

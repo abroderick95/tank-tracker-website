@@ -1,24 +1,35 @@
 import * as React from "react";
 import { Typography } from "@mui/material";
 import { useState } from "react";
-import { newTankSlides } from "./newTankSlides";
+import {
+  freshwaterSlides,
+  newTankSlides,
+  QuestionnaireAnswer,
+  saltwaterSlides,
+} from "./newTankSlides";
 import { Question } from "./Question";
 
 export function NewTankForm() {
-  const [currentSlide, setSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [slides, setSlides] = useState(newTankSlides);
 
-  function nextSlide() {
-    setSlide((prev) => prev + 1);
+  function nextSlide(answer?: QuestionnaireAnswer) {
+    if (answer?.heading === "Freshwater") {
+      setSlides([...newTankSlides, ...freshwaterSlides]);
+    } else if (answer?.heading === "Saltwater") {
+      setSlides([...newTankSlides, ...saltwaterSlides]);
+    }
+    setCurrentSlide((prev) => prev + 1);
   }
 
   function prevSlide() {
-    setSlide((prev) => prev - 1);
+    setCurrentSlide((prev) => prev - 1);
   }
 
   return (
     <>
       <Typography variant="h3">Create Your New Tank!</Typography>
-      {newTankSlides.map((slide, index) =>
+      {slides.map((slide, index) =>
         index === currentSlide ? (
           <Question {...slide} onNext={nextSlide} />
         ) : (

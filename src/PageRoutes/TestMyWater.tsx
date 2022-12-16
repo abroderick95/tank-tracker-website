@@ -2,15 +2,16 @@ import "../styling/App.css";
 import "../styling/TankForms.css";
 import * as React from "react";
 import { Footer } from "../components/Footer";
-import { Grid, Typography } from "@mui/material";
-import {
-  QuickColumn,
-  QuickColumnItem,
-  QuickColumnProps,
-} from "../components/QuickColumn";
+import { Button, Grid, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import { QuickColumn, QuickColumnItem } from "../components/QuickColumn";
 import { TankTestingTimer } from "../components/TankTestingTimer";
 import { useState } from "react";
 import { WaterTestingColumn } from "../constants/WaterTestingColumn";
+import { Box } from "@mui/system";
+import { WCDateWheel, WCDateWheelProps } from "../components/WCDateWheel";
+import { PageRoute } from "../constants/pageRoute";
+import dayjs, { Dayjs } from "dayjs";
 
 export const TestMyWater = () => {
   const ammoniaItems: QuickColumnItem[] = [
@@ -53,9 +54,34 @@ export const TestMyWater = () => {
     }));
   }
 
+  const [value, setValue] = React.useState<Dayjs | null>(dayjs());
+  const [errorStatus, setErrorStatus] = React.useState("Test Date");
+
+  const handleChange = (newValue: Dayjs | null) => {
+    setValue(newValue);
+  };
+
+  function handleError() {
+    value?.isValid()
+      ? setErrorStatus("Test Date")
+      : setErrorStatus("Please enter a valid date");
+  }
+
+  function submitResults() {
+    console.log({ selectedButtons });
+  }
+
   return (
     <>
       <Typography variant="h3">Test Your Water!</Typography>
+      <Grid style={{ textAlign: "center", padding: "5px 10px 30px" }}>
+        <WCDateWheel
+          errorStatus={errorStatus}
+          onError={handleError}
+          onDateChange={handleChange}
+          value={value}
+        />
+      </Grid>
       <TankTestingTimer expiryTimestamp={new Date(Date.now() + 300000)} />
       <Grid container columnSpacing={2} className="waterTestingContainer">
         <Grid item>
@@ -89,6 +115,21 @@ export const TestMyWater = () => {
           ></QuickColumn>
         </Grid>
       </Grid>
+      <Box sx={{ justifyContent: "flex-start", padding: "25px 8px 5px" }}>
+        <Button
+          disabled={
+            (selectedButtons.Nitrate === undefined &&
+              selectedButtons.Nitrite === undefined &&
+              selectedButtons.Ammonia === undefined) ||
+            !value?.isValid()
+          }
+          component={Link}
+          to={PageRoute.TankStats}
+          onClick={submitResults}
+        >
+          Submit These Results
+        </Button>
+      </Box>
       <Footer></Footer>
     </>
   );

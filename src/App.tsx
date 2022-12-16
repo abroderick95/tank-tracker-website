@@ -31,3 +31,11 @@ function App() {
 }
 
 export default App;
+
+// To-Do List of Functionality
+// () Disallow Submission of Data if Date is Invalid
+// () Create Graph/Layout for Displaying Data
+// () Get Backend for Displaying Data Up and Running
+// () Send Real Data to Backend
+// () Display Results for Each Tank
+// () Be Able to Filter Results with Date Range Picker

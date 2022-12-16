@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles";
+import { color } from "@mui/system";
 import { transform } from "typescript";
 
 export const siteThemes = createTheme({
@@ -8,7 +9,7 @@ export const siteThemes = createTheme({
       // Navbar main color, Mui element outlines
     },
     secondary: {
-      light: "#FFF7E9",
+      light: "#79DAE8",
       main: "#FFF7E9",
       contrastText: "#1746A2",
       // Navbar text, Mui button text
@@ -24,6 +25,35 @@ export const siteThemes = createTheme({
   },
 
   components: {
+    // MuiButton: {
+    //   styleOverrides: {
+    //    textPrimary: {
+    //    }
+    //   },
+    // },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: { color: "#001D6E" },
+      },
+    },
+    MuiPickersDay: {
+      styleOverrides: {
+        root: { color: "#001D6E" },
+      },
+    },
+    MuiDayPicker: {
+      styleOverrides: {
+        header: { backgroundColor: "#FFF7E9" },
+        weekDayLabel: { color: "#001D6E" },
+        weekContainer: { backgroundColor: "#E8F9FD" },
+        slideTransition: { backgroundColor: "#FFF7E9" },
+      },
+    },
+    MuiPickersArrowSwitcher: {
+      styleOverrides: {
+        root: { backgroundColor: "#FFF7E9" },
+      },
+    },
     MuiGrid: {
       styleOverrides: {
         root: { padding: 0 },
@@ -31,12 +61,17 @@ export const siteThemes = createTheme({
     },
     MuiTypography: {
       styleOverrides: {
-        // root: { color: "#FF731D !important" },s
+        subtitle1: { color: "#001D6E" },
       },
     },
     MuiCardActionArea: {
       styleOverrides: {
         // root: { margin: 50 },
+      },
+    },
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: { color: "#001D6E" },
       },
     },
   },

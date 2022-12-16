@@ -5,6 +5,7 @@ import Paper from "@mui/material/Paper";
 import { border, flexbox } from "@mui/system";
 import { positions } from "@mui/system";
 import { Footer } from "../components/Footer";
+import { CalendarDateRangePicker } from "../components/CalendarDateRangePicker";
 
 // import {
 //   Chart,
@@ -45,6 +46,7 @@ export const TankStats = () => {
         flexDirection: "column",
       }}
     >
+      <CalendarDateRangePicker></CalendarDateRangePicker>
       <Typography variant="h3">Your Tank Stats!</Typography>
       <Paper
         sx={{ width: 450, height: 450 }}

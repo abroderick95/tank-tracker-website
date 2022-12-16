@@ -1,42 +1,36 @@
 import * as React from "react";
 import type {} from "@mui/x-date-pickers/themeAugmentation";
-
-import dayjs, { Dayjs } from "dayjs";
+import { Dayjs } from "dayjs";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { Box } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
 
-function MaterialUIPickers() {
-  const [value, setValue] = React.useState<Dayjs | null>(
-    dayjs("2014-08-18T21:11:54")
-  );
-
-  const handleChange = (newValue: Dayjs | null) => {
-    setValue(newValue);
-  };
-
-  return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Stack spacing={3}>
-        <DesktopDatePicker
-          label="Date desktop"
-          inputFormat="MM/DD/YYYY"
-          value={value}
-          onChange={handleChange}
-          renderInput={(params) => <TextField {...params} />}
-        />
-      </Stack>
-    </LocalizationProvider>
-  );
+export interface WCDateWheelProps {
+  value: Dayjs | null;
+  errorStatus: String;
+  onError: () => void;
+  onDateChange: (newValue: Dayjs | null) => void;
 }
 
-export function WCDateWheel() {
+export function WCDateWheel(props: WCDateWheelProps) {
   return (
     <Box sx={{ mx: "auto", width: 1 / 4 }}>
-      <MaterialUIPickers />
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Stack spacing={3}>
+          <DatePicker
+            disableFuture
+            label={props.errorStatus}
+            onError={props.onError}
+            inputFormat="MM/DD/YYYY"
+            value={props.value}
+            onChange={props.onDateChange}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </Stack>
+      </LocalizationProvider>
     </Box>
   );
 }

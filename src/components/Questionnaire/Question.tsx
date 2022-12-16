@@ -4,11 +4,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { FormControl } from "@mui/material";
 import { Box, Button, Grid } from "@mui/material";
 import { CardActionArea, TextField } from "@mui/material";
 import { QuestionnaireAnswer, QuestionType } from "./newTankSlides";
-import { display } from "@mui/system";
 import { useState } from "react";
 
 export interface QuestionProps {
@@ -16,7 +14,7 @@ export interface QuestionProps {
   answers?: QuestionnaireAnswer[];
   label: string;
   questionType?: QuestionType;
-  onNext: () => void;
+  onNext: (answer?: QuestionnaireAnswer) => void;
 }
 
 export const Question = (props: QuestionProps) => {
@@ -26,7 +24,7 @@ export const Question = (props: QuestionProps) => {
   function handleChange(event: any) {
     const newTankInput = event.target.value;
     setNewTankName(newTankInput);
-    // setErrorStatus(false);
+    if (isTankNameValid()) setErrorStatus(false);
     console.log(newTankName.split(","));
     isTankNameValid();
   }
@@ -58,7 +56,9 @@ export const Question = (props: QuestionProps) => {
             />
             <Button
               onClick={
-                isTankNameValid() ? props.onNext : () => setErrorStatus(true)
+                isTankNameValid()
+                  ? () => props.onNext()
+                  : () => setErrorStatus(true)
               }
             >
               Next
@@ -74,7 +74,7 @@ export const Question = (props: QuestionProps) => {
                 elevation={5}
                 className="newTankCard"
               >
-                <CardActionArea onClick={props.onNext}>
+                <CardActionArea onClick={() => props.onNext(answer)}>
                   <CardMedia
                     component="img"
                     height="250"
